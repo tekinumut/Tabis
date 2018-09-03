@@ -1,0 +1,158 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">TABIS</string>
+    <string name="title_activity_tab" translatable="false">TabActivity</string>
+    <string name="title_activity_recycler_tab" translatable="false">RecyclerTabActivity</string>
+
+    <!--  XML kod stringler  -->
+
+    <string name="login_title">İKAZ SİSTEMİ</string>
+    <string name="Email">E-mail</string>
+    <string name="Sifre">Şifre</string>
+    <string name="login_rememberme">Beni Hatırla</string>
+    <string name="login_loginbutton">GİRİŞ YAP</string>
+    <string name="recyclertab_tab_text_1">Görevlerim</string>
+    <string name="recyclertab_tab_text_2">Gönderilerim</string>
+    <string name="createrecords_tab_text_1">BİLGİLERİNİZ</string>
+    <string name="createrecords_tab_text_2">ADRES</string>
+    <string name="createrecords_tab_text_3">FOTOĞRAF</string>
+    <string name="chooseimagemethod_dialog_title">Ekleme Yöntemi</string>
+    <string name="chooseimagemethod_dialog_button_gallery">Galeriden Seç</string>
+    <string name="chooseimagemethod_dialog_button_camera">Fotoğraf Çek</string>
+    <string name="reddedildi">Reddedildi</string>
+    <string name="inceleniyor">İnceleniyor</string>
+    <string name="duzeltildi">Düzeltildi</string>
+    <string name="recorddetails_dialog_title_1">Kişisel Bilgiler</string>
+    <string name="recorddetails_dialog_name">İsim:</string>
+    <string name="recorddetails_dialog_phone">Telefon:</string>
+    <string name="recorddetails_dialog_mail">E-mail:</string>
+    <string name="recorddetails_dialog_title_2">Problem Tanımı</string>
+    <string name="recorddetails_dialog_depart">Departman:</string>
+    <string name="recorddetails_dialog_description">Açıklama:</string>
+    <string name="recorddetails_dialog_title_3" tools:ignore="Typos">Adres</string>
+    <string name="recorddetails_dialog_address" tools:ignore="Typos">Adres:</string>
+    <string name="recorddetails_dialog_addressdecription">Tarif:</string>
+    <string name="recorddetails_dialog_buttonopenmap">Yol Tarifi Al</string>
+    <string name="verialinamadi">Veri Alınamadı.</string>
+    <string name="tab1info_phone">Telefon</string>
+    <string name="tab1info_depart">İletilecek Departmanı Seçiniz</string>
+    <string name="tab1info_description">Açıklama</string>
+    <string name="degisimsebebistate">Lütfen durum değişikliği hakkında açıklama giriniz.</string>
+    <string name="tab1info_description_hint">Problem hakkında kısa bir açıklama yazınız.</string>
+    <string name="tab2map_address" tools:ignore="Typos">Tahmini Adres:</string>
+    <string name="tab2map_addressdescription" tools:ignore="Typos">Adres Tarifi:</string>
+    <string name="tab2map_addressdescription_hint">Adresi kısa bir şekilde tarif ediniz.</string>
+    <string name="tab2map_buttonyenile">Yenile</string>
+    <string name="tab3image_button_pickimage">Fotoğraf Seç</string>
+    <string name="tab3image_button_sendeverything">Gönder</string>
+    <string name="menu_about">Hakkında</string>
+    <string name="menu_logout">Oturumu Kapat</string>
+    <string name="hesabınyokmu">Hesabınız yok mu? Hesap oluşturun</string>
+    <string name="zatenuyemisin">Zaten üye misiniz? Giriş Yapın</string>
+    <string name="hesapolustur">Hesap Oluştur</string>
+    <string name="departmandegistir">Departmanı Değiştir</string>
+    <string name="yonlendirilecek_departsec">Yönlendirilecek Departmanı Seçiniz</string>
+
+    <!--  Java kod stringler  -->
+
+    <string name="dialog_baglaniyor">Bağlanıyor</string>
+    <string name="gonderiliyor">Gönderiliyor</string>
+    <string name="dialog_tamam">Tamam</string>
+    <string name="dialog_evet">Evet</string>
+    <string name="dialog_hayir">Hayır</string>
+    <string name="dialog_onayla">Onayla</string>
+    <string name="dialog_iptalet">İptal et</string>
+    <string name="mailbosbirakma">Mail boş bırakılamaz.</string>
+    <string name="sifrebosbirakma">Şifre boş bırakılamaz.</string>
+    <string name="veriyuklenemedi">Veriler yüklenemedi.</string>
+    <string name="girisbasarisiz">Giriş başarısız.</string>
+    <string name="gorevyok">Göreviniz yok.</string>
+    <string name="gonderiyok">Gönderiniz yok.</string>
+    <string name="kayityuklenemedi">Kayıtlarınız yüklenemedi.</string>
+    <string name="kayitlaryenilendi">Kayıtlarınız yenilendi.</string>
+    <string name="kayitsil">Kaydı silmek istediğinizden emin misiniz ?</string>
+    <string name="birhatameydanageldi">Bir hata meydana geldi.</string>
+    <string name="kayitsilindi">Kayıt başarıyla silindi.</string>
+    <string name="degisiklikkayitedildi">Değişiklikler başarıyla kayıt edildi.</string>
+    <string name="kayitgonderildi">Kaydınız başarıyla gönderildi.</string>
+    <string name="kayitgonderilemedi">Kayıt gönderilirken bir hata meydana geldi.</string>
+    <string name="galerierisimreddi">Galeriye erişim iznini reddettiniz. </string>
+    <string name="izinalinamadi">İzin alınamadı.</string>
+    <string name="hesapolusturuldu">Hesabınız başarıyla oluşturuldu</string>
+    <string name="hesapolusturulamadı">Hesap oluşturulurken bir hata meydana geldi</string>
+    <string name="hesapolusturuluyor">Hesap oluşturuluyor</string>
+
+
+    <!--  ImageView kod stringler  ÇEVİRME-->
+
+    <string name="login_image">Giriş Logosu</string>
+    <string name="login_background_image">Giriş Arka Planı</string>
+    <string name="recycler_inside_image_main">Kayıtlarıma Çekilen Resim</string>
+    <string name="recycler_inside_image_delete">Kayıtları silen imagebutton </string>
+    <string name="recycler_inside_image_department_forward">Departman yönlendirme</string>
+    <string name="tab3image_imagemain">Veritabanına gönderilecek resim</string>
+    <string name="tab1info_image_phone">Kayıt oluştururken tab 1 deki telefon resmi</string>
+    <string name="tab1info_image_email">Kayıt oluştururken tab 1 deki e-mail resmi</string>
+    <string name="createaccount_logo">Hesap oluştur sayfası logo</string>
+
+
+    <!-- Sharedpreferences degerleri  ÇEVİRME - VERİ DEĞİŞTİRME-->
+    <string name="loginvalues">pref_login</string>
+    <string name="remembermevalues">pref_rememberme</string>
+    <string name="karisikdegerlervalues">pref_karisikdegerler</string>
+    <string name="pref_notification">pref_notification</string>
+
+    <!-- Sharedpreferences iç değerleri ÇEVİRME - VERİ DEĞİŞTİRME -->
+    <string name="sqlcode">sqlcode</string>
+    <string name="rememberme_hatirla">hatirla</string>
+    <string name="rememberme_email">email</string>
+    <string name="rememberme_password">password</string>
+    <string name="departhistorycountid">departhistorycountid</string>
+    <string name="statehistorycountid">statehistorycountid</string>
+    <string name="departhistorymaxid">departhistorymaxid</string>
+    <string name="statehistorymaxid">statehistorymaxid</string>
+
+    <!-- PHP adresleri - VERİ DEĞİŞTİRME-->
+
+    <string name="php_login">http://android.umonsoft.com/login.php</string>
+    <string name="php_getrecords">http://android.umonsoft.com/getrecords.php</string>
+    <string name="php_sentrecords">http://android.umonsoft.com/sentrecords.php</string>
+    <string name="php_get1parameter">http://android.umonsoft.com/get1parameter.php</string>
+    <string name="php_get2parameter">http://android.umonsoft.com/get2parameter.php</string>
+    <string name="php_sentitem">http://android.umonsoft.com/sentitem.php</string>
+    <string name="php_sentlogindetails">http://android.umonsoft.com/logindetails.php</string>
+    <string name="php_createaccount">http://android.umonsoft.com/createaccount.php</string>
+    <string name="php_getrecordhistory">http://android.umonsoft.com/getrecordhistory.php</string>
+
+    <string name="file_noimage">http://android.umonsoft.com/pictures/noimage.jpeg</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- KARIŞIK GİDİYOR -->
+    <string name="emailkullanılıyor">Belirtmiş olduğunuz e-posta adresi kullanılıyor. Lütfen farklı bir e-posta adresi giriniz.</string>
+    <string name="departmanyonlendirildi">Departman başarıyla yönlendirildi.</string>
+    <string name="yenieklendi">Yeni eklendi.</string>
+    <string name="opensecondtab">opensecondtab</string>
+    <string name="menu_settings">Ayarlar</string>
+    <string name="pref_switch_1_title">Bildirimler</string>
+    <string name="pref_switch_1_summary">Bildirim ayarları</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="bildirim_kapat">Bildirimleri kapat</string>
+    <string name="bildirim_ac">Bildirimleri aç</string>
+    <string name="todo">TODO</string>
+    <string name="dialog_recorddetails_state_title">Yapılan İşlem</string>
+    <string name="recordsdetails_state_description">İşlem Açıklaması:</string>
+
+
+</resources>

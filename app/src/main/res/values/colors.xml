@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // #011945 Talas Belediyesi Koyu Renk
+
+    <color name="colorPrimary">#011945</color>
+    <color name="colorPrimaryDark">#011945</color>
+    <color name="colorAccent">#000000</color>
+    <color name="beyaz">#ffffff</color>
+    <color name="yeşil">#4CAF50</color>
+    <color name="kırmızı">#f44336</color>
+    <color name="mor">#673AB7</color>
+
+    <color name="RedKırmızı">#d50000</color>
+    <color name="İnceleSarı">#FFDEBB0E</color>
+    <color name="DuzYesil">#689F38</color>
+
+</resources>

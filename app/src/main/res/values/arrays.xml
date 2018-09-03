@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="list_pref_check_entries">
+        <item>15 Dakika</item>
+        <item>30 Dakika</item>
+        <item>1 Saat</item>
+        <item>6 Saat</item>
+        <item>12 Saat</item>
+        <item>1 Gün</item>
+        <item>1 Hafta</item>
+    </string-array>
+    <string-array name="list_pref_check_values">
+        <item>5000</item>
+        <item>18000000</item>
+        <item>36000000</item>
+        <item>216000000</item>
+        <item>432000000</item>
+        <item>814000000</item>
+
+
+    </string-array>
+
+
+</resources>

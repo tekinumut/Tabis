@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.Homepage">
+
+<LinearLayout
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <Button
+        android:id="@+id/dialogReddedildiButton"
+        android:background="@color/beyaz"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="@string/reddedildi"
+        android:textColor="@color/kırmızı"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/dialogInceleniyorButton"
+        android:background="@color/beyaz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:text="@string/inceleniyor"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="22sp" />
+
+    <Button
+        android:layout_marginBottom="5dp"
+        android:id="@+id/dialogDuzeltildiButton"
+        android:background="@color/beyaz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:text="@string/duzeltildi"
+        android:textColor="@color/yeşil"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/choosestate_linearlayoutofimage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/imageuploadstate"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/noimage"
+            android:contentDescription="@string/tab3image_imagemain"    />
+
+        <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/tab3imageRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <Button
+            android:id="@+id/d_seccamera_galeri_state"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/chooseimagemethod_dialog_button_gallery"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/beyaz"/>
+
+        <Button
+            android:id="@+id/d_seccamera_photo_state"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:padding="15dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="6dp"
+            android:text="@string/chooseimagemethod_dialog_button_camera"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/beyaz"
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tab1info_description"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/dialogStateDescEdittext"
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:maxLength="999"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        android:hint="@string/degisimsebebistate"/>
+
+
+</LinearLayout>
+
+</ScrollView>

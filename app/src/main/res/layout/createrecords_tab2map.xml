@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+tools:context=".activities.CreateRecords">
+
+<com.google.android.gms.maps.MapView
+    android:layout_width="match_parent"
+    android:layout_height="330dp"
+    android:id="@+id/map">
+
+</com.google.android.gms.maps.MapView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tab2map_buttonyenile"
+        android:id="@+id/yenile"
+        android:layout_gravity="end"
+        android:textColor="@color/beyaz"
+        android:background="@color/colorPrimary"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/tab2map_address"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+    android:text="@string/verialinamadi"
+    android:id="@+id/tab2Adres"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/tab2map_addressdescription"
+        android:textColor="@color/colorPrimary"/>
+    <EditText
+    android:inputType="textMultiLine"
+    android:gravity="top|start"
+    android:maxLength="299"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:scrollbars="vertical"
+    android:id="@+id/tab2AdresTarif"
+    android:hint="@string/tab2map_addressdescription_hint"
+    />
+
+</LinearLayout>

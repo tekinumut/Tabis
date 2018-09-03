@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.SwitchPreferenceCompat
+
+        android:defaultValue="false"
+        android:key="pref_switch_open_notification"    />
+
+    <android.support.v7.preference.ListPreference
+
+        android:key="list_pref_check_notification"
+        android:title="Bildirim kontrol aralığı"
+        android:summary="Bildirimlerin ne kadar sürede bir kontrol edileceğini seçiniz."
+        android:entries="@array/list_pref_check_entries"
+        android:entryValues="@array/list_pref_check_values"
+        android:defaultValue="5000"
+
+        />
+
+    <!--9000000 -->
+</android.support.v7.preference.PreferenceScreen>
