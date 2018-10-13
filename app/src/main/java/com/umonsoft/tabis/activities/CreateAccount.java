@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateAccount extends AppCompatActivity {
+
     private EditText _email;
     private EditText _password;
     private HelperMethods helperMethods;

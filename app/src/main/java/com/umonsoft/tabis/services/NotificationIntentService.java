@@ -63,7 +63,6 @@ public class NotificationIntentService extends IntentService {
 
                 int addingtype = Integer.parseInt(response);
 
-
                 String departcount = "Select count(id),MAX(id) from recordhistory where nextdepart IN (SELECT department_id from userdeparts where user_id =" +
                         " " + user_id + ")  and NOT user_id =  " + user_id + "";
 
