@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 public class ImageController {
-    private Context context;
-    private ImageView imageupload;
+    private final Context context;
+    private final ImageView imageupload;
 
     public ImageController(Context context, ImageView imageupload) {
         this.context = context;

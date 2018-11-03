@@ -16,9 +16,9 @@ import com.umonsoft.tabis.R;
 import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
-    private Context context;
+    private final Context context;
     private ArrayList<Uri> imagePaths;
-    private ImageController imageController;
+    private final ImageController imageController;
 
     public ImageAdapter(Context context, ImageController imageController, ArrayList<Uri> imagePaths) {
         this.context = context;
@@ -66,7 +66,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        final ImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);

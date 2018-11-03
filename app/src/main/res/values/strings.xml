@@ -63,7 +63,6 @@
     <string name="dialog_iptalet">İptal et</string>
     <string name="mailbosbirakma">Mail boş bırakılamaz.</string>
     <string name="sifrebosbirakma">Şifre boş bırakılamaz.</string>
-    <string name="veriyuklenemedi">Veriler yüklenemedi.</string>
     <string name="girisbasarisiz">Giriş başarısız.</string>
     <string name="gorevyok">Göreviniz yok.</string>
     <string name="gonderiyok">Gönderiniz yok.</string>

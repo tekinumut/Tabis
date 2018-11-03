@@ -495,7 +495,7 @@ public class Tab3Image extends Fragment {
         //resim çektikten sonra
     }
 
-    public static int calculateInSampleSize(
+    private static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;

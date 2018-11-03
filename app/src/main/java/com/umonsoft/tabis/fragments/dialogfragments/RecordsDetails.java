@@ -35,10 +35,10 @@ import java.util.List;
 public class RecordsDetails extends DialogFragment implements OnMapReadyCallback {
 
     private Double dialogLattitude,dialogLongtitude;
-    Context mContext;
-    View view;
-    int recordid =0;
-    String state;
+    private Context mContext;
+    private View view;
+    private int recordid =0;
+    private String state;
 
     @NonNull
     @Override

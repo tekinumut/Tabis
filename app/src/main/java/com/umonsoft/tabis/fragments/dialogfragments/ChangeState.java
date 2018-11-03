@@ -149,7 +149,7 @@ public class ChangeState extends DialogFragment {
                         phpValues.sentItem(mContext, sqlcodeHistoryState,_stateDesc.getText().toString(),null, null);
 
 
-                        final StringBuilder sqlcode = new StringBuilder("");
+                        final StringBuilder sqlcode = new StringBuilder();
 
                         switch (preferencesKarisikDegerler.getString("imageValue", "null")) {
                             case "gallery":
@@ -435,7 +435,7 @@ public class ChangeState extends DialogFragment {
         //resim çektikten sonra
     }
 
-    public static int calculateInSampleSize(
+    private static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;

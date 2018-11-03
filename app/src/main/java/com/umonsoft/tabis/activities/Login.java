@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {  //keyboard gizler.
         View view = getCurrentFocus();
-        if (view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
+        if ((ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
             int scrooges[] = new int[2];
             view.getLocationOnScreen(scrooges);
             float x = ev.getRawX() + view.getLeft() - scrooges[0];

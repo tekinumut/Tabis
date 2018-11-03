@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.umonsoft.tabis.R;
 
 public class HelperMethods {
-    private Context mContext;
+    private final Context mContext;
     private AlertDialog b;
 
     public HelperMethods(Context mContext) {
