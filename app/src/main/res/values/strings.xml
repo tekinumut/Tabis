@@ -112,17 +112,17 @@
 
     <!-- PHP adresleri - VERİ DEĞİŞTİRME-->
 
-    <string name="php_login">http://android.umonsoft.com/login.php</string>
-    <string name="php_getrecords">http://android.umonsoft.com/getrecords.php</string>
-    <string name="php_sentrecords">http://android.umonsoft.com/sentrecords.php</string>
-    <string name="php_get1parameter">http://android.umonsoft.com/get1parameter.php</string>
-    <string name="php_get2parameter">http://android.umonsoft.com/get2parameter.php</string>
-    <string name="php_sentitem">http://android.umonsoft.com/sentitem.php</string>
-    <string name="php_sentlogindetails">http://android.umonsoft.com/logindetails.php</string>
-    <string name="php_createaccount">http://android.umonsoft.com/createaccount.php</string>
-    <string name="php_getrecordhistory">http://android.umonsoft.com/getrecordhistory.php</string>
+    <string name="php_login">http://kayseriulasim.dx.am/login.php</string>
+    <string name="php_getrecords">http://kayseriulasim.dx.am/getrecords.php</string>
+    <string name="php_sentrecords">http://kayseriulasim.dx.am/sentrecords.php</string>
+    <string name="php_get1parameter">http://kayseriulasim.dx.am/get1parameter.php</string>
+    <string name="php_get2parameter">http://kayseriulasim.dx.am/get2parameter.php</string>
+    <string name="php_sentitem">http://kayseriulasim.dx.am/sentitem.php</string>
+    <string name="php_sentlogindetails">http://kayseriulasim.dx.am/logindetails.php</string>
+    <string name="php_createaccount">http://kayseriulasim.dx.am/createaccount.php</string>
+    <string name="php_getrecordhistory">http://kayseriulasim.dx.am/getrecordhistory.php</string>
 
-    <string name="file_noimage">http://android.umonsoft.com/pictures/noimage.jpeg</string>
+    <string name="file_noimage">http://kayseriulasim.dx.am/pictures/noimage.jpeg</string>
 
 
 

@@ -34,6 +34,7 @@ import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
 import com.sangcomz.fishbun.define.Define;
 import com.umonsoft.tabis.Abstracts.AdapterValues;
+import com.umonsoft.tabis.HelperClasses.Constants;
 import com.umonsoft.tabis.HelperClasses.HelperMethods;
 import com.umonsoft.tabis.HelperClasses.ImageController;
 import com.umonsoft.tabis.Interfaces.VolleyGet1ParameterWithError;
@@ -170,8 +171,8 @@ public class ChangeState extends DialogFragment {
                                                 else
                                                     filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
 
-                                                String imagenamesql = "http://android.umonsoft.com/pictures/" + filename;
-                                                String targetnamesql = "/home/www/android.umonsoft.com/pictures/" + filename;
+                                                String imagenamesql = "http://"+ Constants.BASE_URL +"/pictures/" + filename;
+                                                String targetnamesql = "/home/www/"+ Constants.BASE_URL +"/pictures/" + filename;
 
                                                 File finalFile = new File(getRealPathFromURI(path.get(i)));
                                                 setReducedImageSize(finalFile.getAbsolutePath());
@@ -226,8 +227,8 @@ public class ChangeState extends DialogFragment {
                                     imageData = getString(R.string.file_noimage);
                                 }
 
-                                String imagenamesql = "http://android.umonsoft.com/pictures/" + filename;
-                                String targetnamesql = "/home/www/android.umonsoft.com/pictures/" + filename;
+                                String imagenamesql = "http://"+ Constants.BASE_URL +"/pictures/" + filename;
+                                String targetnamesql = "/home/www/"+ Constants.BASE_URL +"/pictures/" + filename;
                                 sqlcode.append("INSERT INTO recordimages (record_id,image,type) VALUES (@LASTID,'").append(imagenamesql).append("',2); ");
 
                                 new PhpValues().sendRecords(mContext, imageData, String.valueOf(sqlcode), targetnamesql, new VolleyGet1ParameterWithError() {
