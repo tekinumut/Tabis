@@ -134,9 +134,11 @@ public class Tab3Image extends Fragment {
 						  String imageData;
 						  
 						  if (loginemail.length() >= 5)
-							 filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp + ".jpeg";
+						//	 filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp + ".jpeg";
+						  filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp;
 						  else
-							 filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
+						//	 filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
+						  filename = "" + loginemail + "_" + loginid + "_" + timeStamp;
 						  
 						  String imagenamesql = "http://"+ Constants.BASE_URL +"/pictures/" + filename;
 						  String targetnamesql = "/home/www/"+ Constants.BASE_URL +"/pictures/" + filename;
@@ -190,9 +192,11 @@ public class Tab3Image extends Fragment {
 				String imageData;
 				
 				if (loginemail.length() >= 5)
-				  filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp + ".jpeg";
+				//  filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp + ".jpeg";
+				filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp;
 				else
-				  filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
+			//	  filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
+				filename = "" + loginemail + "_" + loginid + "_" + timeStamp ;
 				
 				if (bitmap != null) {
 				  imageData = imageToString(bitmap);

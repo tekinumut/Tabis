@@ -112,8 +112,8 @@
 
     <!-- PHP adresleri - VERİ DEĞİŞTİRME-->
 
-    <string name="file_noimage">http://staj.dx.am/pictures/noimage.jpeg</string>
-
+    <string name="file_noimage">http://staj.dx.am/pictures/noimage</string>
+    <!-- <string name="file_noimage">http://staj.dx.am/pictures/noimage.jpeg</string> -->
 
 
     <!-- KARIŞIK GİDİYOR -->
