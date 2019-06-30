@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.umonsoft.tabis.HelperClasses.Constants;
 import com.umonsoft.tabis.HelperClasses.HelperMethods;
 import com.umonsoft.tabis.R;
 import com.umonsoft.tabis.phpvalues.PhpValues;
@@ -120,7 +121,7 @@ public class Login extends AppCompatActivity {
 
     private void LoginAcc(final String email, final String password){
 
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, getString(R.string.php_login), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://"+ Constants.BASE_URL +"/login.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

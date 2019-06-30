@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.umonsoft.tabis.HelperClasses.Constants;
 import com.umonsoft.tabis.HelperClasses.HelperMethods;
 import com.umonsoft.tabis.R;
 import com.umonsoft.tabis.phpvalues.PhpValues;
@@ -115,7 +116,7 @@ public class CreateAccount extends AppCompatActivity {
         final String sqlcode ="Insert into login (email,password) VALUES (?,?)";
         final String sqllogin="SELECT email FROM login WHERE email= ?";
 
-        StringRequest stringRequest =new StringRequest(Request.Method.POST, getString(R.string.php_createaccount), new Response.Listener<String>() {
+        StringRequest stringRequest =new StringRequest(Request.Method.POST, "http://"+ Constants.BASE_URL +"/createaccount.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

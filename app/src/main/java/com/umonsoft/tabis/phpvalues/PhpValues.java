@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.umonsoft.tabis.HelperClasses.Constants;
 import com.umonsoft.tabis.Interfaces.VolleyGet1Parameter;
 import com.umonsoft.tabis.Interfaces.VolleyGet1ParameterWithError;
 import com.umonsoft.tabis.Interfaces.VolleyGet1Parameters;
@@ -34,7 +35,7 @@ public class PhpValues {
 
     public void get1Parameter(final Context mContext, final String sqlcode, final VolleyGet1Parameter callback) {
 
-        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, mContext.getString(R.string.php_get1parameter), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/get1parameter.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -82,7 +83,7 @@ public class PhpValues {
 
     public void get2Parameter(final Context mContext, final String sqlcode, final VolleyGet2Parameter callback) {
 
-        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, mContext.getString(R.string.php_get2parameter), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/get2parameter.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -133,7 +134,7 @@ public class PhpValues {
     public void get1Parameters(final Context mContext, final String sqlcode, final VolleyGet1Parameters callback) {
 
 
-        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, mContext.getString(R.string.php_get1parameter), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/get1parameter.php", new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -184,7 +185,7 @@ public class PhpValues {
     public void loadSpinnerValues(final Context mContext,final Spinner spinnerDepart,final String sqlcode) {
 
         final ArrayList<String> spinnerArrayValues =new ArrayList<>();
-        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, mContext.getString(R.string.php_get1parameter), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/get1parameter.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 spinnerArrayValues.clear();
@@ -230,7 +231,7 @@ public class PhpValues {
     public void loadRecordSpinnerValues(final Context mContext, final Spinner spinnerDepart, final String sqlcode, final VolleyGet1Parameter callback) {
 
         final ArrayList<String> spinnerArrayValues =new ArrayList<>();
-        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, mContext.getString(R.string.php_get1parameter), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/get1parameter.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 spinnerArrayValues.clear();
@@ -291,7 +292,7 @@ public class PhpValues {
 
     public void sentItem(final Context mContext,final String sqlcode,final String parameter1,final String deger,final VolleyGet1Parameter callback){
 
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, mContext.getString(R.string.php_sentitem), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://"+ Constants.BASE_URL +"/sentitem.php", new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -341,7 +342,7 @@ public class PhpValues {
 
     public void setLoginDetails(final Context mContext, final int user_id, final SharedPreferences.Editor editorlogin)
     {
-    StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, mContext.getString(R.string.php_sentlogindetails), new Response.Listener<String>() {
+    StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/logindetails.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -401,7 +402,7 @@ public class PhpValues {
 
         final List<RecordsModel> recyclerList=new ArrayList<>();
 
-        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, mContext.getString(R.string.php_getrecords), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/getrecords.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -480,7 +481,7 @@ public class PhpValues {
     public void sendRecords(final Context mContext, final String imageData, final String sqlcode, final String targetnamesql, final VolleyGet1ParameterWithError callback)
     {
 
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, mContext.getString(R.string.php_sentrecords), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://"+ Constants.BASE_URL +"/sentrecords.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

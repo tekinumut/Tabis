@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.umonsoft.tabis.HelperClasses.Constants;
 import com.umonsoft.tabis.Interfaces.VolleyGet1Parameter;
 import com.umonsoft.tabis.Interfaces.VolleyGet2Parameter;
 import com.umonsoft.tabis.Interfaces.VolleyGetRecordHistory;
@@ -84,7 +85,7 @@ public class NotificationIntentService extends IntentService {
     private void getRecordHistory(final VolleyGetRecordHistory callback)
 
     {
-        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, getString(R.string.php_getrecordhistory), new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, "http://"+ Constants.BASE_URL +"/getrecordhistory.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
