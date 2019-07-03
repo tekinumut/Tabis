@@ -5,24 +5,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"     >
+    android:orientation="vertical">
 
     <LinearLayout
 
-        android:orientation="vertical"
-        android:padding="17dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="17dp">
 
         <TextView
-            android:text="@string/chooseimagemethod_dialog_title"
-            android:gravity="center"
-            android:textSize="25sp"
-            android:textColor="@color/beyaz"
-            android:textStyle="bold"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/chooseimagemethod_dialog_title"
+            android:textColor="@color/beyaz"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -30,36 +30,33 @@
     <Button
         android:id="@+id/d_seccamera_galeri"
         android:layout_width="match_parent"
-        android:textSize="18sp"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
+        android:background="@color/beyaz"
+        android:padding="15dp"
         android:text="@string/chooseimagemethod_dialog_button_gallery"
-        android:textStyle="bold"
         android:textColor="@color/colorPrimary"
-        android:background="@color/beyaz"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/d_seccamera_photo"
         android:layout_width="match_parent"
-        android:textSize="18sp"
-        android:padding="15dp"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="6dp"
-        android:text="@string/chooseimagemethod_dialog_button_camera"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
         android:background="@color/beyaz"
-        />
-
-
+        android:padding="15dp"
+        android:text="@string/chooseimagemethod_dialog_button_camera"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

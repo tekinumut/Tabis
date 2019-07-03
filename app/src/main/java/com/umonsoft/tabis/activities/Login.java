@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -13,9 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.umonsoft.tabis.HelperClasses.Constants;
@@ -45,7 +44,7 @@ public class Login extends AppCompatActivity {
   public boolean dispatchTouchEvent(MotionEvent ev) {  //keyboard gizler.
 	 View view = getCurrentFocus();
 	 if ((ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) && view instanceof EditText && !view.getClass().getName().startsWith("android.webkit.")) {
-		int scrooges[] = new int[2];
+		int[] scrooges = new int[2];
 		view.getLocationOnScreen(scrooges);
 		float x = ev.getRawX() + view.getLeft() - scrooges[0];
 		float y = ev.getRawY() + view.getTop() - scrooges[1];
@@ -120,85 +119,76 @@ public class Login extends AppCompatActivity {
   
   private void LoginAcc(final String email, final String password) {
 	 
-	 StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://" + Constants.BASE_URL + "/login.php", new Response.Listener<String>() {
-		@Override
-		public void onResponse(String response) {
+	 StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://" + Constants.BASE_URL + "/login.php", response -> {
+		
+		try {
+		  JSONObject jsonObject = new JSONObject(response);
+		  String success = jsonObject.getString("success");
+		  JSONArray jsonArray = jsonObject.getJSONArray("login");
 		  
-		  try {
-			 JSONObject jsonObject = new JSONObject(response);
-			 String success = jsonObject.getString("success");
-			 JSONArray jsonArray = jsonObject.getJSONArray("login");
+		  if (success.equals("1")) {
 			 
-			 if (success.equals("1")) {
+			 
+			 for (int i = 0; i < jsonArray.length(); i++) {
 				
+				JSONObject object = jsonArray.getJSONObject(i);
+				int user_id = object.getInt("user_id");
+				String email1 = object.getString("email").trim();
 				
-				for (int i = 0; i < jsonArray.length(); i++) {
-				  
-				  JSONObject object = jsonArray.getJSONObject(i);
-				  int user_id = object.getInt("user_id");
-				  String email = object.getString("email").trim();
-				  
-				  if (i == jsonArray.length() - 1) {
-					 editorLogin.putInt("user_id", user_id);
-					 editorLogin.putString("email", email).apply();
-				  }
+				if (i == jsonArray.length() - 1) {
+				  editorLogin.putInt("user_id", user_id);
+				  editorLogin.putString("email", email1).apply();
 				}
-				
-				new PhpValues().setLoginDetails(Login.this, preferencesLogin.getInt("user_id", 0), editorLogin);
-				
-				String sqlcode = "Update users SET songiris = NOW() where id =" + preferencesLogin.getInt("user_id", 0);
-				new PhpValues().sentItem(Login.this, sqlcode, null, "songiris", null);
-				
-				
-				if (_loginCheckBox.isChecked()) {
-				  
-				  editorRememberMe.putBoolean(getString(R.string.rememberme_hatirla), true);
-				  editorRememberMe.putString(getString(R.string.rememberme_email), email);
-				  editorRememberMe.putString(getString(R.string.rememberme_password), password).apply();
-				  
-				} else {
-				  editorRememberMe.clear().apply();
-				}
-				
-				//    dialog.dismiss();
-				//    startActivity(new Intent(Login.this,Homepage.class));
-				
-				new Thread(new Runnable() {
-				  @Override
-				  public void run() {
-					 try {
-						Thread.sleep(500);
-						runOnUiThread(new Runnable() {
-						  @Override
-						  public void run() {
-							 startActivity(new Intent(Login.this, Homepage.class));
-							 finish();
-							 helperMethods.HideProgressDialog();
-						  }
-						});
-					 } catch (InterruptedException e) {
-						e.printStackTrace();
-					 }
-				  }
-				}).start();
-				
-				_email.clearFocus();
-				_password.clearFocus();
 			 }
-		  } catch (JSONException e) {
-			 e.printStackTrace();
-			 Toast.makeText(Login.this, getString(R.string.girisbasarisiz), Toast.LENGTH_SHORT).show();
-			 helperMethods.HideProgressDialog();
+			 
+			 new PhpValues().setLoginDetails(Login.this, preferencesLogin.getInt("user_id", 0), editorLogin);
+			 
+			 String sqlcode = "Update users SET songiris = NOW() where id =" + preferencesLogin.getInt("user_id", 0);
+			 new PhpValues().sentItem(Login.this, sqlcode, null, "songiris", null);
+			 
+			 
+			 if (_loginCheckBox.isChecked()) {
+				
+				editorRememberMe.putBoolean(getString(R.string.rememberme_hatirla), true);
+				editorRememberMe.putString(getString(R.string.rememberme_email), email);
+				editorRememberMe.putString(getString(R.string.rememberme_password), password).apply();
+				
+			 } else {
+				editorRememberMe.clear().apply();
+			 }
+			 
+			 //    dialog.dismiss();
+			 //    startActivity(new Intent(Login.this,Homepage.class));
+			 
+			 new Thread(() -> {
+				try {
+				  Thread.sleep(500);
+				  
+				  runOnUiThread(() -> {
+					 startActivity(new Intent(Login.this, Homepage.class));
+					 finish();
+					 helperMethods.HideProgressDialog();
+				  });
+				  
+				} catch (InterruptedException e) {
+				  e.printStackTrace();
+				}
+			 }).start();
+			 
+			 _email.clearFocus();
+			 _password.clearFocus();
 		  }
-		  
-		}
-	 }, new Response.ErrorListener() {
-		@Override
-		public void onErrorResponse(VolleyError error) {
-		  
+		} catch (JSONException e) {
+		  e.printStackTrace();
 		  Toast.makeText(Login.this, getString(R.string.girisbasarisiz), Toast.LENGTH_SHORT).show();
 		  helperMethods.HideProgressDialog();
 		}
+		
+	 }, error -> {
+		
+		Toast.makeText(Login.this, getString(R.string.girisbasarisiz), Toast.LENGTH_SHORT).show();
+		helperMethods.HideProgressDialog();
+		
 	 }) {
 		
 		@Override

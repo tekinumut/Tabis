@@ -4,7 +4,6 @@ package com.umonsoft.tabis.fragments.createrecordstabs;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -18,12 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +27,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
@@ -92,246 +92,212 @@ public class Tab3Image extends Fragment {
 	 editorKarisikDegerler.remove("imageValue").apply();
 	 helperMethods = new HelperMethods(mContext);
 	 
-	 btnupload.setOnClickListener(new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-		  
-		  btnupload.setEnabled(false);
-		  
-		  helperMethods.ShowProgressDialog(getString(R.string.gonderiliyor));
-		  //------------------------------------- sending values -------------------------------------
-		  
-		  final String loginemail = preferencesLogin.getString("email", "NA");
-		  final int loginid = preferencesLogin.getInt("user_id", -1);
-		  
-		  
-		  EditText _tab1description = getActivity().findViewById(R.id.tab1description);
-		  Spinner _tab1spinnerdepart = getActivity().findViewById(R.id.tab1spinnerdepart);
-		  TextView _tab2adres = getActivity().findViewById(R.id.tab2Adres);
-		  EditText _tab2adrestarif = getActivity().findViewById(R.id.tab2AdresTarif);
-		  
-		  String tab1description = _tab1description.getText().toString().replace("'", "\\'").replace("\"", "\\\"");
-		  String tab2adrestarif = _tab2adrestarif.getText().toString().replace("'", "\\'").replace("\"", "\\\"");
-		  
-		  
-		  final StringBuilder sqlcode = new StringBuilder("INSERT INTO records (user_id,department,description,address,addressdesc,lattitude,longitude) VALUES " +
-					 "(" + String.valueOf(loginid) + ",(SELECT id from departments where name = '" + _tab1spinnerdepart.getSelectedItem().toString() + "'),'" + tab1description + "'" +
-					 ",'" + _tab2adres.getText() + "','" + tab2adrestarif + "','" + String.valueOf(Tab2Map.latti) + "','" + String.valueOf(Tab2Map.longi) + "'); " +
-					 "SET @LASTID=LAST_INSERT_ID(); ");
-		  
-		  switch (preferencesKarisikDegerler.getString("imageValue", "null")) {
-			 case "gallery":
+	 btnupload.setOnClickListener(v -> {
+		
+		btnupload.setEnabled(false);
+		
+		helperMethods.ShowProgressDialog(getString(R.string.gonderiliyor));
+		//------------------------------------- sending values -------------------------------------
+		
+		final String loginemail = preferencesLogin.getString("email", "NA");
+		final int loginid = preferencesLogin.getInt("user_id", -1);
+		
+		
+		EditText _tab1description = getActivity().findViewById(R.id.tab1description);
+		Spinner _tab1spinnerdepart = getActivity().findViewById(R.id.tab1spinnerdepart);
+		TextView _tab2adres = getActivity().findViewById(R.id.tab2Adres);
+		EditText _tab2adrestarif = getActivity().findViewById(R.id.tab2AdresTarif);
+		
+		String tab1description = _tab1description.getText().toString().replace("'", "\\'").replace("\"", "\\\"");
+		String tab2adrestarif = _tab2adrestarif.getText().toString().replace("'", "\\'").replace("\"", "\\\"");
+		
+		
+		final StringBuilder sqlcode = new StringBuilder("INSERT INTO records (user_id,department,description,address,addressdesc,lattitude,longitude) VALUES " +
+				  "(" + loginid + ",(SELECT id from departments where name = '" + _tab1spinnerdepart.getSelectedItem().toString() + "'),'" + tab1description + "'" +
+				  ",'" + _tab2adres.getText() + "','" + tab2adrestarif + "','" + Tab2Map.latti + "','" + Tab2Map.longi + "'); " +
+				  "SET @LASTID=LAST_INSERT_ID(); ");
+		
+		String karisikDegerler = preferencesKarisikDegerler.getString("imageValue", "null");
+		
+		switch (karisikDegerler) {
+		  case "gallery":
+			 
+			 new Thread(() -> {
 				
-				new Thread(new Runnable() {
-				  @Override
-				  public void run() {
+				for (int i = 0; i < path.size(); i++) {
+				  try {
+					 String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmmss", Locale.getDefault()).format(new Date());
 					 
-					 for (int i = 0; i < path.size(); i++) {
-						try {
-						  String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmmss", Locale.getDefault()).format(new Date());
-						  
-						  final String filename;
-						  String imageData;
-						  
-						  if (loginemail.length() >= 5)
+					 final String filename;
+					 String imageData;
+					 
+					 if (loginemail.length() >= 5)
 						//	 filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp + ".jpeg";
-						  filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp;
-						  else
+						filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp;
+					 else
 						//	 filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
-						  filename = "" + loginemail + "_" + loginid + "_" + timeStamp;
-						  
-						  String imagenamesql = "http://"+ Constants.BASE_URL +"/pictures/" + filename;
-						  String targetnamesql = "/home/www/"+ Constants.BASE_URL +"/pictures/" + filename;
-						  
-						  File finalFile = new File(getRealPathFromURI(path.get(i)));
-						  setReducedImageSize(finalFile.getAbsolutePath());
-						  
-						  sqlcode.append("INSERT INTO recordimages (record_id,image,type) VALUES (@LASTID,'").append(imagenamesql).append("',1); ");
-						  
-						  if (bitmap != null) {
-							 imageData = imageToString(bitmap);
-						  } else {
-							 imageData = getString(R.string.file_noimage);
-						  }
-						  
-						  if (i < path.size() - 1)
-							 new PhpValues().sendRecords(mContext, imageData, "Select 1", targetnamesql, null);
-						  
-						  if (i == path.size() - 1) {
-							 new PhpValues().sendRecords(mContext, imageData, String.valueOf(sqlcode), targetnamesql, new VolleyGet1ParameterWithError() {
-								@Override
-								public void onSuccess(String response) {
-								  Toast.makeText(mContext, getString(R.string.kayitgonderildi), Toast.LENGTH_LONG).show();
-								  helperMethods.HideProgressDialog();
-								  Intent intent = new Intent(mContext, Homepage.class);
-								  intent.putExtra(getString(R.string.opensecondtab), 1);
-								  startActivity(intent);
-								  getActivity().finish();
-								}
-								
-								@Override
-								public void onError(String error) {
-								  Toast.makeText(mContext, getString(R.string.kayitgonderilemedi), Toast.LENGTH_SHORT).show();
-								  btnupload.setEnabled(true);
-								  helperMethods.HideProgressDialog();
-								}
-							 });
-						  }
-						  Thread.sleep(1001);
-						} catch (InterruptedException e) {
-						  e.printStackTrace();
-						}
+						filename = "" + loginemail + "_" + loginid + "_" + timeStamp;
+					 
+					 String imagenamesql = "http://" + Constants.BASE_URL + "/pictures/" + filename;
+					 String targetnamesql = "/home/www/" + Constants.BASE_URL + "/pictures/" + filename;
+					 
+					 File finalFile = new File(getRealPathFromURI(path.get(i)));
+					 setReducedImageSize(finalFile.getAbsolutePath());
+					 
+					 sqlcode.append("INSERT INTO recordimages (record_id,image,type) VALUES (@LASTID,'").append(imagenamesql).append("',1); ");
+					 
+					 if (bitmap != null) {
+						imageData = imageToString(bitmap);
+					 } else {
+						imageData = getString(R.string.file_noimage);
 					 }
+					 
+					 if (i < path.size() - 1)
+						new PhpValues().sendRecords(mContext, imageData, "Select 1", targetnamesql, null);
+					 
+					 if (i == path.size() - 1) {
+						new PhpValues().sendRecords(mContext, imageData, String.valueOf(sqlcode), targetnamesql, new VolleyGet1ParameterWithError() {
+						  @Override
+						  public void onSuccess(String response) {
+							 Toast.makeText(mContext, getString(R.string.kayitgonderildi), Toast.LENGTH_LONG).show();
+							 helperMethods.HideProgressDialog();
+							 Intent intent = new Intent(mContext, Homepage.class);
+							 intent.putExtra(getString(R.string.opensecondtab), 1);
+							 startActivity(intent);
+							 getActivity().finish();
+						  }
+						  
+						  @Override
+						  public void onError(String error) {
+							 Toast.makeText(mContext, getString(R.string.kayitgonderilemedi), Toast.LENGTH_SHORT).show();
+							 btnupload.setEnabled(true);
+							 helperMethods.HideProgressDialog();
+						  }
+						});
+					 }
+					 Thread.sleep(1001);
+				  } catch (InterruptedException e) {
+					 e.printStackTrace();
 				  }
-				}).start();
-				break;
-			 case "camera":
-				String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmmss", Locale.getDefault()).format(new Date());
-				
-				final String filename;
-				String imageData;
-				
-				if (loginemail.length() >= 5)
+				}
+			 }).start();
+			 break;
+		  case "camera":
+			 String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmmss", Locale.getDefault()).format(new Date());
+			 
+			 final String filename;
+			 String imageData;
+			 
+			 if (loginemail.length() >= 5)
 				//  filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp + ".jpeg";
 				filename = "" + loginemail.substring(0, 4) + "_" + loginid + "_" + timeStamp;
-				else
-			//	  filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
-				filename = "" + loginemail + "_" + loginid + "_" + timeStamp ;
-				
-				if (bitmap != null) {
-				  imageData = imageToString(bitmap);
-				} else {
-				  imageData = getString(R.string.file_noimage);
+			 else
+				//	  filename = "" + loginemail + "_" + loginid + "_" + timeStamp + ".jpeg";
+				filename = "" + loginemail + "_" + loginid + "_" + timeStamp;
+			 
+			 if (bitmap != null) {
+				imageData = imageToString(bitmap);
+			 } else {
+				imageData = getString(R.string.file_noimage);
+			 }
+			 
+			 String imagenamesql = "http://" + Constants.BASE_URL + "/pictures/" + filename;
+			 String targetnamesql = "/home/www/" + Constants.BASE_URL + "/pictures/" + filename;
+			 sqlcode.append("INSERT INTO recordimages (record_id,image,type) VALUES (@LASTID,'").append(imagenamesql).append("',1); ");
+			 
+			 new PhpValues().sendRecords(mContext, imageData, String.valueOf(sqlcode), targetnamesql, new VolleyGet1ParameterWithError() {
+				@Override
+				public void onSuccess(String response) {
+				  Toast.makeText(mContext, getString(R.string.kayitgonderildi), Toast.LENGTH_LONG).show();
+				  helperMethods.HideProgressDialog();
+				  Intent intent = new Intent(mContext, Homepage.class);
+				  intent.putExtra(getString(R.string.opensecondtab), 1);
+				  startActivity(intent);
+				  getActivity().finish();
 				}
 				
-				String imagenamesql = "http://"+ Constants.BASE_URL +"/pictures/" + filename;
-				String targetnamesql = "/home/www/"+ Constants.BASE_URL +"/pictures/" + filename;
-				sqlcode.append("INSERT INTO recordimages (record_id,image,type) VALUES (@LASTID,'").append(imagenamesql).append("',1); ");
-				
-				new PhpValues().sendRecords(mContext, imageData, String.valueOf(sqlcode), targetnamesql, new VolleyGet1ParameterWithError() {
-				  @Override
-				  public void onSuccess(String response) {
-					 Toast.makeText(mContext, getString(R.string.kayitgonderildi), Toast.LENGTH_LONG).show();
-					 helperMethods.HideProgressDialog();
-					 Intent intent = new Intent(mContext, Homepage.class);
-					 intent.putExtra(getString(R.string.opensecondtab), 1);
-					 startActivity(intent);
-					 getActivity().finish();
-				  }
+				@Override
+				public void onError(String error) {
+				  Toast.makeText(mContext, getString(R.string.kayitgonderilemedi), Toast.LENGTH_SHORT).show();
+				  btnupload.setEnabled(true);
+				  helperMethods.HideProgressDialog();
+				}
+			 });
+			 
+			 break;
+		  default:
+			 
+			 new PhpValues().sendRecords(mContext, getString(R.string.file_noimage), String.valueOf(sqlcode), "null", new VolleyGet1ParameterWithError() {
+				@Override
+				public void onSuccess(String response) {
+				  Toast.makeText(mContext, getString(R.string.kayitgonderildi), Toast.LENGTH_LONG).show();
+				  helperMethods.HideProgressDialog();
+				  Intent intent = new Intent(mContext, Homepage.class);
+				  intent.putExtra(getString(R.string.opensecondtab), 1);
+				  startActivity(intent);
+				  getActivity().finish();
 				  
-				  @Override
-				  public void onError(String error) {
-					 Toast.makeText(mContext, getString(R.string.kayitgonderilemedi), Toast.LENGTH_SHORT).show();
-					 btnupload.setEnabled(true);
-					 helperMethods.HideProgressDialog();
-				  }
-				});
+				}
 				
-				break;
-			 default:
-				
-				new PhpValues().sendRecords(mContext, getString(R.string.file_noimage), String.valueOf(sqlcode), "null", new VolleyGet1ParameterWithError() {
-				  @Override
-				  public void onSuccess(String response) {
-					 Toast.makeText(mContext, getString(R.string.kayitgonderildi), Toast.LENGTH_LONG).show();
-					 helperMethods.HideProgressDialog();
-					 Intent intent = new Intent(mContext, Homepage.class);
-					 intent.putExtra(getString(R.string.opensecondtab), 1);
-					 startActivity(intent);
-					 getActivity().finish();
-				  }
-				  
-				  @Override
-				  public void onError(String error) {
-					 Toast.makeText(mContext, getString(R.string.kayitgonderilemedi), Toast.LENGTH_SHORT).show();
-					 btnupload.setEnabled(true);
-					 helperMethods.HideProgressDialog();
-				  }
-				});
-				break;
-		  }
-		  
+				@Override
+				public void onError(String error) {
+				  Toast.makeText(mContext, getString(R.string.kayitgonderilemedi), Toast.LENGTH_SHORT).show();
+				  btnupload.setEnabled(true);
+				  helperMethods.HideProgressDialog();
+				}
+			 });
+			 break;
 		}
+		
 	 });
 	 
-	 btnchoose.setOnClickListener(new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
+	 btnchoose.setOnClickListener(v -> {
+		
+		btnchoose.setClickable(false);
+		new Handler().postDelayed(() -> btnchoose.setClickable(true), 300);
+		
+		View mView = View.inflate(mContext, R.layout.dialog_chooseimagemethod, null);
+		
+		final Button getgallery = mView.findViewById(R.id.d_seccamera_galeri);
+		final Button getphoto = mView.findViewById(R.id.d_seccamera_photo);
+		builder = new AlertDialog.Builder(mContext);
+		
+		builder.setView(mView);
+		
+		getgallery.setOnClickListener(v1 -> {
+		  getgallery.setClickable(false);
+		  getgallery.setClickable(false);
+		  new Handler().postDelayed(() -> getgallery.setClickable(true), 300);
 		  
-		  btnchoose.setClickable(false);
-		  new Handler().postDelayed(new Runnable() {
-			 @Override
-			 public void run() {
-				btnchoose.setClickable(true);
+		  requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, CODE_GALLERY_REQUEST);
+		  
+		});
+		
+		getphoto.setOnClickListener(v12 -> {
+		  
+		  getphoto.setClickable(false);
+		  new Handler().postDelayed(() -> getphoto.setClickable(true), 300);
+		  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			 if (mContext.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
+						mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+				
+				callCameraApp();    //eğer zaten onay verilmişse
+			 } else {
+				// onay verilmemişse izin iste
+				String[] permissionRequest = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+				requestPermissions(permissionRequest, REQUEST_EXTERNAL_STORAGE_RESULT);
 			 }
-		  }, 300);
+		  } else {
+			 callCameraApp2();
+		  }
 		  
-		  View mView = View.inflate(mContext, R.layout.dialog_chooseimagemethod, null);
-		  
-		  final Button getgallery = mView.findViewById(R.id.d_seccamera_galeri);
-		  final Button getphoto = mView.findViewById(R.id.d_seccamera_photo);
-		  builder = new AlertDialog.Builder(mContext);
-		  
-		  builder.setView(mView);
-		  
-		  getgallery.setOnClickListener(new View.OnClickListener() {
-			 @Override
-			 public void onClick(View v) {
-				getgallery.setClickable(false);
-				getgallery.setClickable(false);
-				new Handler().postDelayed(new Runnable() {
-				  @Override
-				  public void run() {
-					 getgallery.setClickable(true);
-				  }
-				}, 300);
-				
-				requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, CODE_GALLERY_REQUEST);
-				
-			 }
-		  });
-		  
-		  getphoto.setOnClickListener(new View.OnClickListener() {
-			 @Override
-			 public void onClick(View v) {
-				
-				getphoto.setClickable(false);
-				new Handler().postDelayed(new Runnable() {
-				  @Override
-				  public void run() {
-					 getphoto.setClickable(true);
-				  }
-				}, 300);
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-				  if (mContext.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
-							 mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-					 
-					 callCameraApp();    //eğer zaten onay verilmişse
-				  } else {
-					 // onay verilmemişse izin iste
-					 String[] permissionRequest = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-					 requestPermissions(permissionRequest, REQUEST_EXTERNAL_STORAGE_RESULT);
-				  }
-				} else {
-				  callCameraApp2();
-				}
-				
-			 }
-		  });
-		  
-		  builder.setNegativeButton(getString(R.string.dialog_iptalet), new DialogInterface.OnClickListener() {
-			 @Override
-			 public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				
-				
-			 }
-		  });
-		  
-		  dialog = builder.create();
-		  dialog.show();
-		  
-		}
+		});
+		
+		builder.setNegativeButton(getString(R.string.dialog_iptalet), (dialog, which) -> dialog.dismiss());
+		
+		dialog = builder.create();
+		dialog.show();
+		
 	 });
 	 
 	 return rootView;
@@ -489,28 +455,28 @@ public class Tab3Image extends Fragment {
 	 bmOptions.inJustDecodeBounds = true;
 	 BitmapFactory.decodeFile(value, bmOptions);
 	 
-	 bmOptions.inSampleSize = calculateInSampleSize(bmOptions, 512, 384);
+	 bmOptions.inSampleSize = calculateInSampleSize(bmOptions);
 	 bmOptions.inJustDecodeBounds = false;
 	 
 	 bitmap = BitmapFactory.decodeFile(value, bmOptions);
 	 //resim çektikten sonra
   }
   
-  private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+  private static int calculateInSampleSize(BitmapFactory.Options options) {
 	 // Raw height and width of image
 	 final int height = options.outHeight;
 	 final int width = options.outWidth;
 	 int inSampleSize = 1;
 	 
-	 if (height > reqHeight || width > reqWidth) {
+	 if (height > 384 || width > 512) {
 		
 		final int halfHeight = height / 2;
 		final int halfWidth = width / 2;
 		
 		// Calculate the largest inSampleSize value that is a power of 2 and keeps both
 		// height and width larger than the requested height and width.
-		while ((halfHeight / inSampleSize) >= reqHeight
-				  && (halfWidth / inSampleSize) >= reqWidth) {
+		while ((halfHeight / inSampleSize) >= 384
+				  && (halfWidth / inSampleSize) >= 512) {
 		  inSampleSize *= 2;
 		}
 	 }

@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildToolsVersion '28.0.3'
         vectorDrawables {
             useSupportLibrary = true
@@ -21,24 +21,24 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
     buildToolsVersion '28.0.3'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:preference-v7:28.0.0'
-    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    implementation 'com.sangcomz:FishBun:0.8.6'
-    implementation 'joda-time:joda-time:2.10'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.sangcomz:FishBun:0.9.1'
+    implementation 'joda-time:joda-time:2.10.2'
     testİmplementation 'junit:junit:4.12'
-    androidTestİmplementation 'com.android.support.test:runner:1.0.2'
-    androidTestİmplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestİmplementation 'androidx.test:runner:1.2.0'
+    androidTestİmplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

@@ -10,7 +10,7 @@
 
 </PreferenceScreen> -->
 
-    <android.support.v7.preference.PreferenceScreen
+    <androidx.preference.PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -25,4 +25,4 @@
             android:targetClass="com.umonsoft.tabis.settings.SettingsActivity"    />
     </Preference>
 
-    </android.support.v7.preference.PreferenceScreen>
+    </androidx.preference.PreferenceScreen>

@@ -10,18 +10,18 @@ import android.preference.PreferenceManager;
 import com.umonsoft.tabis.settings.SettingsNotification;
 
 public class BootReceiver extends BroadcastReceiver {
-
-    @SuppressLint("UnsafeProtectedBroadcastReceiver")
-    @Override
-    public void onReceive(Context context, Intent intent) {
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        Boolean switchPref = sharedPref.getBoolean
-                (SettingsNotification.KEY_PREF_SWITCH_1, false);
-
-        if(switchPref) {
-            new AlarmReceiver().setAlarm(context);
-        }
-
-    }
+  
+  @SuppressLint("UnsafeProtectedBroadcastReceiver")
+  @Override
+  public void onReceive(Context context, Intent intent) {
+	 
+	 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+	 boolean switchPref = sharedPref.getBoolean
+				(SettingsNotification.KEY_PREF_SWITCH_1, false);
+	 
+	 if (switchPref) {
+		new AlarmReceiver().setAlarm(context);
+	 }
+	 
+  }
 }

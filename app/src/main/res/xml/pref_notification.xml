@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.v7.preference.PreferenceScreen
+<androidx.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.preference.SwitchPreferenceCompat
+    <androidx.preference.SwitchPreferenceCompat
 
         android:defaultValue="false"
         android:key="pref_switch_open_notification"    />
 
-    <android.support.v7.preference.ListPreference
+    <androidx.preference.ListPreference
 
         android:key="list_pref_check_notification"
         android:title="Bildirim kontrol aralığı"
@@ -21,4 +21,4 @@
         />
 
     <!--9000000 -->
-</android.support.v7.preference.PreferenceScreen>
+</androidx.preference.PreferenceScreen>
